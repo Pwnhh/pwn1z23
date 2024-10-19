@@ -7,6 +7,11 @@
 <h1>待办事项列表</h1>
 <form action="/todos" method="post">
     <input type="text" name="description" placeholder="输入待办事项" required>
+    <select name="priority">
+        <option value="high">高</option>
+        <option value="medium">中</option>
+        <option value="low">低</option>
+    </select>
     <button type="submit">添加</button>
 </form>
 <ul>
@@ -24,6 +29,10 @@
             <button type="submit">删除</button>
         </form>
     </li>
+        <li>
+            <span>${todo.description}</span> - 优先级: <span>${todo.priority}
+</span>
+        </li>
     </#list>
 </ul>
 </body>

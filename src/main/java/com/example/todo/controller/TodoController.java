@@ -16,10 +16,15 @@ public class TodoController {
         model.addAttribute("todos", todoList);
         return "index";
     }
-
+    @PostMapping
+    public String addTodo(@RequestParam String description, @RequestParam
+    String priority) {
+        todoList.add(new Todo(idCounter++, description, priority));
+        return "redirect:/todos";
+    }
     @PostMapping
     public String addTodo(@RequestParam String description) {
-        todoList.add(new Todo(idCounter++, description));
+        todoList.add(new Todo(idCounter++, description, description));
         return "redirect:/todos";
     }
 
