@@ -3,6 +3,8 @@ import com.example.todo.model.Todo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 @Controller
@@ -17,16 +19,13 @@ public class TodoController {
         return "index";
     }
     @PostMapping
-    public String addTodo(@RequestParam String description, @RequestParam
-    String priority) {
-        todoList.add(new Todo(idCounter++, description, priority));
+    public String addTodo(@RequestParam String description,
+                          @RequestParam String priority,
+                          @RequestParam LocalDate dueDate) {
+        todoList.add(new Todo(idCounter++, description, priority, dueDate));
         return "redirect:/todos";
     }
-    @PostMapping
-    public String addTodo(@RequestParam String description) {
-        todoList.add(new Todo(idCounter++, description, description));
-        return "redirect:/todos";
-    }
+
 
     @PostMapping("/complete/{id}")
     public String completeTodo(@PathVariable Long id) {
@@ -41,5 +40,8 @@ public class TodoController {
     public String deleteTodo(@PathVariable Long id) {
         todoList.removeIf(todo -> todo.getId().equals(id));
         return "redirect:/todos";
+    }
+
+    public class LocalDate {
     }
 }
