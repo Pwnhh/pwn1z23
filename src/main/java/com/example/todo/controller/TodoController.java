@@ -16,10 +16,16 @@ public class TodoController {
         model.addAttribute("todos", todoList);
         return "index";
     }
-
     @PostMapping
-    public String addTodo(@RequestParam String description) {
-        todoList.add(new Todo(idCounter++, description));
+    public String addTodo(@RequestParam String description, @RequestParam
+    String priority) {
+        todoList.add(new Todo(idCounter++, description, priority));
+        return "redirect:/todos";
+    }
+    @PostMapping
+    public String addTodo(@RequestParam String description,@RequestParam
+            LocalDate dueDate) {
+        todoList.add(new Todo(idCounter++, description, description,dueDate));
         return "redirect:/todos";
     }
 
@@ -36,5 +42,8 @@ public class TodoController {
     public String deleteTodo(@PathVariable Long id) {
         todoList.removeIf(todo -> todo.getId().equals(id));
         return "redirect:/todos";
+    }
+
+    public class LocalDate {
     }
 }
