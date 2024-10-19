@@ -16,7 +16,7 @@ public class Todo {
         this.dueDate = dueDate;
     }
 
-    public Todo(long id, String description, String priority) {
+    public Todo(long id, String description, TodoController.LocalDate priority) {
     }
 
     public Todo(long l, String description, String description1, TodoController.LocalDate dueDate) {
